@@ -25,7 +25,7 @@
                         </div>
                         {{-- pick data range --}}
                         <div class="col-12">
-                          <form action=" {{ route('welcome')}}" method="GET">
+                          <form action=" {{ route('welcome')}}" method="GET" id="ms_form">
                             <label for="start_date">Start Date:</label>
                             <input type="date" id="start_date" name="start_date">
                             <label for="end_date">End Date:</label>

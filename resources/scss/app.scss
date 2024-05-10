@@ -48,3 +48,16 @@ footer {
   color: white;
   font-weight: bold;
 }
+
+#ms_form{
+  button{
+    background-color: transparent;
+    padding: 0.25rem 0.75rem 0.25rem .75rem;
+    margin-left: 0.5rem;
+    border: 2px solid $laravel-red;
+    border-radius: 3px;
+  }
+  input{
+    padding: 0 0.5rem 0 0.75rem;
+  }
+}
