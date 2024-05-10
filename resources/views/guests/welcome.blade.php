@@ -16,13 +16,26 @@
                     </div>
                 </div>
             </div>
-            {{-- card cycle --}}
+            {{-- main section --}}
             <div class="col-12">
                 <div class="container-xl py-4 mb-4">
                     <div class="row g-3">
                         <div class="col-12 px-4">
                             <h3>Current Train Rides Selection</h3>
                         </div>
+                        {{-- pick data range --}}
+                        <div class="col-12">
+                          <form action=" {{ route('welcome')}}" method="GET">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" id="start_date" name="start_date">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" id="end_date" name="end_date">
+                            <button type="submit">Filter search</button>
+                            <button type="submit" name="reset" value="reset">Reset</button>
+                          </form>
+                        </div>
+                        
+                        {{-- card cycle --}}
                         @forelse($trains as $train)
                             <div class="col-12">
                                 <div class="card">
@@ -41,6 +54,17 @@
                                           <p>from</p>
                                           <h4>{{ $train->ticket_price }}€</h4>
                                         </div>
+                                        {{-- details dropdwn --}}
+                                        <div class="col">
+                                          <div class="dropdown">
+                                            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                              Details
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuLink">
+                                              <p class="dropdown-item">{{ $train->details}}</p>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                         
                                          
@@ -49,7 +73,7 @@
                             </div>
 
                         @empty
-                            <p>Nothing to see here...</p>
+                            <h4 class="py-4">No ticket available for the selected time...</h4>
                         @endforelse
                     </div>
                 </div>
