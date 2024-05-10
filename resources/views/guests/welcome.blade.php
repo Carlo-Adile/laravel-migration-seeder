@@ -71,12 +71,18 @@
                                     </div>
                                 </div>
                             </div>
+                            
 
                         @empty
                             <h4 class="py-4">No ticket available for the selected time...</h4>
                         @endforelse
+
+                        {{-- pagination --}}
+                        {{ $trains->links() }}
                     </div>
+                    
                 </div>
+                
             </div>
         </div>
     </div>
