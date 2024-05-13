@@ -6,15 +6,9 @@ use App\Models\Train;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
 
 class PageController extends Controller
 {
-    public function boot(): void
-{
-    Paginator::useBootstrapFive();
-    Paginator::useBootstrapFour();
-}
     public function index(Request $request)
     {
         
