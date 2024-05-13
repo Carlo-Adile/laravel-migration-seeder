@@ -78,7 +78,11 @@
                         @endforelse
 
                         {{-- pagination --}}
-                        {{ $trains->links() }}
+                        <div class="d-flex justify-content-center pagination">
+                          {{ $trains->links() }}
+                        </div>
+                        
+                        
                     </div>
                     
                 </div>

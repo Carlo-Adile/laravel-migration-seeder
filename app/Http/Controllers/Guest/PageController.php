@@ -6,11 +6,18 @@ use App\Models\Train;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class PageController extends Controller
 {
+    public function boot(): void
+{
+    Paginator::useBootstrapFive();
+    Paginator::useBootstrapFour();
+}
     public function index(Request $request)
     {
+        
         $trains = Train::query();
 
         /* filter request */
@@ -24,9 +31,13 @@ class PageController extends Controller
         if ($request->has('reset')) {
             return redirect()->route('welcome');
         }
+        
+        
         /* pagination */
         $trains = $trains->paginate(6);
+        /* $trains = $trains->simplePaginate(6); */
 
         return view('guests.welcome', compact('trains'));
     }
+    
 }
