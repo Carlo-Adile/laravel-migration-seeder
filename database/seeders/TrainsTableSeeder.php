@@ -13,27 +13,31 @@ class TrainsTableSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker):void {
+    public function run(Faker $faker): void
+    {
 
-        $trains = config('db.trains');
+        /* $trains = config('db.trains'); */
 
-        for($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $train = new Train();
-            $train->company = $train['company'];
-            $train->departure_station = $train['departure_station'];
-            $train->arrival_station = $train['arrival_station'];
-            $train->departure_time = $train['departure_time'];
-            $train->arrival_time = $train['arrival_time'];
-            $train->train_code = $train['train_code'];
-            $train->coach_count = $train['coach_count'];
-            $train->on_time = $train['on_time'];
-            $train->cancelled = $train['cancelled'];
-            $train->remaining_tickets = $train['remaining_ticket'];
-            $train->ticket_price = $train['ticket_price'];
-            $train->has_Stopover = $train['has_Stopover'];
-            $train->has_disabilities_support = $train['has_disabilities_support'];
-            $train->details = $train['details'];
-            $train->departure_date = $train['departure_date'];
+            $train->company = $faker->word();
+            $train->departure_station = $faker->words(2, true);
+            $train->arrival_station = $faker->words(2, true);
+            $train->departure_time = $faker->time();
+            $train->arrival_time = $faker->time();
+            $train->train_code = $faker->bothify('????#');
+            $train->coach_count = $faker->numberBetween(5, 10);
+            $train->on_time = $faker->boolean();
+            $train->cancelled = $faker->boolean();
+            $train->remaining_tickets = $faker->numberBetween(0, 200);
+            $train->ticket_price = $faker->randomFloat(2, 0, 99.99);
+            $train->has_Stopover = $faker->boolean();
+            $train->has_disabilities_support = $faker->boolean();
+            $train->details = $faker->sentence(12);
+            /* dateTimeBetween produce dateTimeValue, tuttavia il mio campo accetta solo date, quindi salvo la variabile e poi la formatto quando la passo al db */
+            $departureDateTime = $faker->dateTimeBetween('now', '+4 week');
+            $departureDate = $departureDateTime->format('Y-m-d');
+            $train->departure_date = $departureDate;
             $train->save();
         }
     }

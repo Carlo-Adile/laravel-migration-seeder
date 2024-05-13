@@ -54,6 +54,11 @@
                                           <p>from</p>
                                           <h4>{{ $train->ticket_price }}€</h4>
                                         </div>
+                                        {{-- departure date --}}
+                                        <div class="col">
+                                          <p>Departure date</p>
+                                          <h4>{{ $train->departure_date }}</h4>
+                                        </div>
                                         {{-- details dropdwn --}}
                                         <div class="col">
                                           <div class="dropdown">
